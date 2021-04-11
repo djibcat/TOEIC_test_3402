@@ -9,8 +9,7 @@ const linkIcon = <FontAwesomeIcon icon={faExternalLinkAlt} />;
 
 export default function Header() {
   const { currentUser } = useAuth();
-  console.log("from header", currentUser);
-  let value = "Log in";
+  let value = "";
   return (
     <Navbar className="bg-primary">
       <Navbar.Brand>
@@ -40,7 +39,7 @@ export default function Header() {
         </Nav>
         <Navbar.Text>
           Signed in as:{" "}
-          <a href="#login">{currentUser ? currentUser.email : value}</a>
+          <a href="/">{currentUser ? currentUser.email : value}</a>
         </Navbar.Text>
       </Navbar.Collapse>
     </Navbar>

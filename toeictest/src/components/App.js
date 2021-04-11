@@ -5,8 +5,9 @@ import Login from "./Login";
 import ForgotPassword from "./ForgotPassword";
 import Header from "./Header";
 import WrittingTest from "./WrittingTest";
-import AudioTest from "./AudioTest";
+import AudioTestList from "./AudioTestList";
 import About from "./About";
+import AudioPlayer from "./AudioPlayer";
 // import { Container } from "react-bootstrap";
 
 import { AuthProvider } from "../context/AuthContext";
@@ -16,12 +17,6 @@ import PrivateRoute from "./PrivateRoute";
 function App() {
   return (
     <React.Fragment>
-      {/* <AuthProvider>
-        <Router>
-          
-        </Router>
-      </AuthProvider> */}
-
       <AuthProvider>
         <Router>
           <Header />
@@ -34,7 +29,15 @@ function App() {
             <Route path="/forgot-password" component={ForgotPassword} />
             <Route path="/writting-test" component={WrittingTest} />
             <Route path="/about" component={About} />
-            <Route path="/audio-test" component={AudioTest} />
+            <Route
+              path="/audio-test"
+              render={() => (
+                <React.Fragment>
+                  <AudioPlayer />
+                  <AudioTestList />
+                </React.Fragment>
+              )}
+            />
           </Switch>
         </Router>
       </AuthProvider>
