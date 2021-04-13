@@ -4,7 +4,7 @@ export default function About() {
   return (
     <React.Fragment>
       <div className="container mt-5">
-        <h1>Welcome to the Toiec test</h1>
+        <h1 className="text-center">Welcome to the Toiec test ! </h1>
         <p className="mt-5">
           Now more than ever, English proficiency is a necessity in the global
           work environment. Whether you are an individual who wants to stand out

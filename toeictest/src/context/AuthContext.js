@@ -1,14 +1,12 @@
 import React, { useContext, useState, useEffect } from "react";
 
 import { auth } from "../Firebase";
-// import { useLocation } from "react-router-dom";
 
 const AuthContext = React.createContext();
 export function useAuth() {
   return useContext(AuthContext);
 }
 export function AuthProvider({ children }) {
-  // const location = useLocation();
   const [currentUser, setCurrentUser] = useState("currentser");
   const [loading, setLoading] = useState(true);
   const [state, setState] = useState();
@@ -35,11 +33,6 @@ export function AuthProvider({ children }) {
       resetPassword,
     });
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      // if (user !== null || user !== undefined) {
-      //   location.push("/");
-      // } else {
-      //   location.push("/login");
-      // }
       setLoading(false);
       setCurrentUser(user);
       setState((s) => {
