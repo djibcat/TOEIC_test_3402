@@ -1,10 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function About() {
   return (
     <React.Fragment>
       <div className="container mt-5">
-        <h1 className="text-center">Welcome to the Toiec test ! </h1>
+        <h1 className="text-center">Welcome to the Toiec test !</h1>
         <p className="mt-5">
           Now more than ever, English proficiency is a necessity in the global
           work environment. Whether you are an individual who wants to stand out
@@ -26,9 +27,16 @@ export default function About() {
           taker's strengths and weaknesses, along with a description of the
           skills typical of test takers at various levels. Learn more about what
           the TOEIC Listening and Reading test can do for you.{" "}
-          <a href="https://www.ets.org/toeic/listening-reading">Here</a>
+          <a href="https://www.ets.org/toeic/listening-reading">Here</a> <br />
+          <br />
+          This part of the test is about 45 minutes. You will have to listen to
+          4 tracks where differents dialogues are recorded and click the button
+          corresponding to the correct awnser. You can play and pause at any
+          time with the player on the top left of your screen in the{" "}
+          <Link to="audio-test">Listening</Link> par of the app. <br />
+          Enjoy and good luck ! :)
         </p>
-        <h4 className="mt-5">A Writting test </h4>
+        <h4 className="mt-5">A Writting test</h4>
         <p>
           Proven. Reliable. Trusted Worldwide. The TOEIC® Writing tests provide
           an accurate assessment of an individual's ability to communicate in

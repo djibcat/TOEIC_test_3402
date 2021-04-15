@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Card, Button, Alert } from "react-bootstrap";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 export default function Dashboard() {
