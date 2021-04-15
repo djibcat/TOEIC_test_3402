@@ -1,12 +1,62 @@
 import React, { useState } from "react";
-import { Form, Button, ButtonGroup, Card, Col } from "react-bootstrap";
-
+import {
+  Form,
+  Button,
+  ButtonGroup,
+  Card,
+  Col,
+  InputGroup,
+  Input,
+} from "react-bootstrap";
+import firebase from "firebase/app";
+//=============================TODO=============================================//
+// -> check structure of form, maybe wrong
+// -> handle form submit
+// -> make a function to display succes message
+// -> add tooltips on the form part wich are unclear
+// -> CLEAN
+// -> have fun
+//==============================================================================//
 export default function AdminForm() {
   const [switchForm1, setSwitchForm1] = useState(false);
   const [switchForm2, setSwitchForm2] = useState(false);
   const [switchForm3, setSwitchForm3] = useState(false);
   const [switchTitle, setSwitchTitle] = useState(false);
+  const succesMessage = "";
 
+  function writeNewQuestion(id, choices, img, order, response, title, type) {
+    if (
+      id !== null &&
+      choices !== null &&
+      img !== null &&
+      order !== null &&
+      response !== null &&
+      title !== null &&
+      type !== null
+    ) {
+      try {
+        const postQuestion = {
+          id: id,
+          choices: choices,
+          img: img,
+          order: order,
+          response: response,
+          title: title,
+          type: type,
+        };
+
+        const updates = {};
+        updates[51] = postQuestion;
+
+        succesMessage =
+          "Question added to the list, you should be able to see it soon !";
+
+        return firebase.database().ref("structure/questions").update(updates);
+      } catch (error) {
+        console.log("error in admin form update : ", error);
+      }
+    }
+  }
   const createForm1 = () => {
     return (
       <Card className="mt-5">
@@ -134,7 +184,20 @@ export default function AdminForm() {
       <Card className="mt-5">
         <div className="container">
           <h4 className="text-center">Heading</h4>
-          <Form className="container p-5">
+          <Form
+            className="container p-5"
+            onSubmit={() =>
+              writeNewQuestion(
+                0,
+                ["A", "B", "C", "D"],
+                "/img/example.png",
+                1,
+                "response",
+                "Wtf did you just said ?",
+                "listening"
+              )
+            }
+          >
             <Form.Row>
               <Col>
                 <Form.Group controlId="setId">
@@ -143,8 +206,8 @@ export default function AdminForm() {
                 </Form.Group>
               </Col>
               <Col>
-                <Form.Group controlId="selectId">
-                  <Form.Label>Question number</Form.Label>
+                <Form.Group controlId="selectOrder">
+                  <Form.Label>Question Type number</Form.Label>
                   <Form.Control as="select">
                     <option>1</option>
                     <option>2</option>
@@ -168,9 +231,9 @@ export default function AdminForm() {
               <Form.Label>Title</Form.Label>
               <Form.Control type="text" placeholder="Question n°32" />
             </Form.Group>
-            <Form.Group controlId="exampleForm.ControlTextarea1">
+            <Input.Group controlId="exampleForm.ControlTextarea1">
               <Form.Label>Question</Form.Label>
-              <Form.Control type="text" placeholder="Who is complaining?" />
+              <Form.Input type="text" placeholder="Who is complaining?" />
               <Form.Label className="mt-2">Choices</Form.Label>
               <Form.Row>
                 <Col>
@@ -240,8 +303,10 @@ export default function AdminForm() {
                   </Form.Control>
                 </Col>
               </Form.Row>
-            </Form.Group>
-            <Button className="container my-5">Add this question</Button>
+            </Input.Group>
+            <Button className="container my-5" type="submit">
+              Add this question
+            </Button>
           </Form>
         </div>
       </Card>
